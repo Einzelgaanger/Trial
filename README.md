@@ -1,5 +1,24 @@
 # For Kimberly ♡
 
-A little website with infinite scrolling sweet messages — **You're Beautiful**, **Kimberly**, and more.
+A React + TypeScript site with infinite scrolling sweet messages, smooth animations, and a cute **catch-the-hearts** mini-game.
 
-Open `index.html` in a browser or host on GitHub Pages.
+- **Infinite words**: "You're Beautiful", "Kimberly", "I love you", and more
+- **Animations**: Framer Motion hero, floating background hearts
+- **Mini-game**: Catch falling hearts for Kimberly; win at 15 hearts
+
+### Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Deploy (GitHub Pages)
+
+Push to `main`; the workflow builds and deploys to GitHub Pages. Enable **Pages** in repo **Settings → Pages** with source **GitHub Actions**.

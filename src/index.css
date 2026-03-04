@@ -1,0 +1,31 @@
+:root {
+  --rose: #f06292;
+  --rose-deep: #e91e63;
+  --rose-light: #f8bbd9;
+  --cream: #fff5f7;
+  --gold: #ff8a65;
+  --text: #4a2c3a;
+  --text-soft: #8e5a6e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(165deg, #ffe0ec 0%, #ffc4dd 25%, #ffb3d9 50%, #ff9ec9 75%, #ff8fbf 100%);
+  font-family: 'Quicksand', sans-serif;
+  color: var(--text);
+}
+
+#root {
+  min-height: 100vh;
+}

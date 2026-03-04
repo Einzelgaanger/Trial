@@ -1,0 +1,269 @@
+/* ----- Hero ----- */
+.hero {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 600;
+  color: var(--rose-deep);
+  letter-spacing: 0.05em;
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--gold);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ----- Infinite words ----- */
+.app {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ----- Floating background hearts ----- */
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -30px;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.4));
+}
+
+.infinite-wrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.infinite-row {
+  display: flex;
+  white-space: nowrap;
+  animation: infinite-scroll linear infinite;
+  will-change: transform;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.infinite-words-group {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0 0.25rem;
+}
+
+.infinite-word {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  margin: 0 0.35em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.95rem, 2vw, 1.6rem);
+  font-weight: 500;
+  color: var(--text);
+  cursor: default;
+  pointer-events: auto;
+}
+
+.infinite-word--highlight {
+  color: var(--rose-deep);
+  font-weight: 600;
+}
+
+.infinite-word--heart {
+  color: var(--rose);
+  font-size: 1.15em;
+}
+
+/* ----- Game trigger ----- */
+.game-trigger {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+  border: none;
+  border-radius: 2rem;
+  box-shadow: 0 4px 20px rgba(233, 30, 99, 0.45);
+  cursor: pointer;
+}
+
+.game-trigger:hover {
+  box-shadow: 0 6px 28px rgba(233, 30, 99, 0.55);
+}
+
+/* ----- Game overlay & panel ----- */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(92, 61, 74, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.game-panel {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  background: linear-gradient(180deg, #fff5f8 0%, #ffe8f0 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(244, 143, 177, 0.6);
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(90deg, rgba(244, 143, 177, 0.35), transparent);
+  border-bottom: 1px solid rgba(244, 143, 177, 0.5);
+}
+
+.game-score {
+  font-weight: 600;
+  color: var(--rose-deep);
+}
+
+.game-close {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-soft);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.game-close:hover {
+  background: rgba(244, 143, 177, 0.4);
+  color: var(--text);
+}
+
+/* ----- Game area (falling hearts) ----- */
+.game-area {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 224, 236, 0.85) 100%);
+}
+
+.falling-heart {
+  position: absolute;
+  top: -30px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  transform: translateX(-50%);
+  transition: transform 0.1s;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.falling-heart:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+
+.game-hint {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+/* ----- Win state ----- */
+.game-won {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255, 250, 252, 0.98) 0%, rgba(255, 228, 236, 0.98) 100%);
+  padding: 2rem;
+  text-align: center;
+}
+
+.game-won-emoji {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.game-won p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--rose-deep);
+}
+
+.game-won-sub {
+  font-size: 1.1rem !important;
+  color: var(--gold) !important;
+  margin-top: 0.25rem;
+}
+
+.game-play-again {
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.25rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(233, 30, 99, 0.4);
+}
