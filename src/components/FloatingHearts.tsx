@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 const FLOATERS = Array.from({ length: 12 }, (_, i) => ({
@@ -10,6 +11,16 @@ const FLOATERS = Array.from({ length: 12 }, (_, i) => ({
 }))
 
 export function FloatingHearts() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mq.matches)
+    const handler = () => setPrefersReducedMotion(mq.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
   return (
     <div className="floating-hearts" aria-hidden>
       {FLOATERS.map(({ id, left, delay, duration, size, emoji }) => (
@@ -19,16 +30,21 @@ export function FloatingHearts() {
           style={{
             left: `${left}%`,
             fontSize: size,
+            bottom: -30,
           }}
-          initial={{ bottom: -30, opacity: 0 }}
-          animate={{
-            bottom: '110%',
-            opacity: [0, 0.5, 0.5, 0],
-          }}
+          initial={{ y: 0, opacity: 0 }}
+          animate={
+            prefersReducedMotion
+              ? { y: 0, opacity: 0.25 }
+              : {
+                  y: '-120vh',
+                  opacity: [0, 0.5, 0.5, 0],
+                }
+          }
           transition={{
-            duration,
-            delay,
-            repeat: Infinity,
+            duration: prefersReducedMotion ? 0 : duration,
+            delay: prefersReducedMotion ? 0 : delay,
+            repeat: prefersReducedMotion ? 0 : Infinity,
             ease: 'linear',
           }}
         >

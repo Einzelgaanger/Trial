@@ -20,7 +20,9 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   background: linear-gradient(165deg, #ffe0ec 0%, #ffc4dd 25%, #ffb3d9 50%, #ff9ec9 75%, #ff8fbf 100%);
   font-family: 'Quicksand', sans-serif;
   color: var(--text);
@@ -28,4 +30,5 @@ body {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
 }

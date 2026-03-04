@@ -143,15 +143,18 @@ export function HeartGame() {
   )
 }
 
+const GAME_AREA_HEIGHT = 320
+
 function FallingHeartKey({ heart, onCatch }: { heart: FallingHeart; onCatch: () => void }) {
   return (
     <motion.button
       type="button"
       className="falling-heart"
       style={{ left: `${heart.x}%` }}
-      initial={{ top: -30, opacity: 1 }}
+      initial={{ x: '-50%', y: -30, opacity: 1 }}
       animate={{
-        top: '100%',
+        x: '-50%',
+        y: GAME_AREA_HEIGHT + 30,
         opacity: 1,
       }}
       transition={{
@@ -164,7 +167,8 @@ function FallingHeartKey({ heart, onCatch }: { heart: FallingHeart; onCatch: () 
         e.stopPropagation()
         onCatch()
       }}
-      whileTap={{ scale: 1.3 }}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 1.15 }}
     >
       {heart.symbol}
     </motion.button>
